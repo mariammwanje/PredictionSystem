@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Patients {% endblock %}
+
+{% block content %}
+    <div class="page-header" align="center" xmlns="http://www.w3.org/1999/html">
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <p>Patients Name: {{ object.name }}</p>
+                <p>Patients Email Address: {{ object.email }}</p>
+                <p>Patients Phone Number: {{ object.phone_number }}</p>
+                <p>Patients Location: {{ object.location }}</p>
+            </div>
+        </div>
+
+{% endblock %}

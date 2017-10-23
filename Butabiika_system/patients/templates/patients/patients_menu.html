@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctors Details  {% endblock %}
+
+{% block content %}
+    <div class="page-header" align="center" xmlns="http://www.w3.org/1999/html">
+        <h2>Doctors Details </h2>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div>
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="container" align="center">
+                            <!-- Large modal -->
+
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#exampleModal1" data-whatever="@getbootstrap">Doctors Header
+                            </button>
+
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">Patients Header</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="nav nav-pills">
+                                                <div class="container-fluid">
+                                                    <div class="navbar-header">
+                                                        <a class="navbar-brand" href="#">
+                                                            <img src="#" alt="company logo">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </ul>
+                                            <h2 align="center">Butabiika Predictition System</h2>
+                                            <h4 align="center"></p>
+                                                <p>Patients Details</p>
+                                            </h4>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="message-text"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Recieve
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Copy
+                                            </button>
+                                            <button type="button" class="btn btn-default">Print</button>
+                                            <button type="button" class="btn btn-default">Attachments</button>
+
+                                            <button type="button" class="btn btn-default">Close</button>
+                                            <button type="button" class="btn btn-default">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Large modal -->
+                            <button type="button" class="btn" data-toggle="modal"
+                                    data-target=".bs-example-modal-lg" data-whatever="@getbootstrap">Add Doctors
+                            </button>
+
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                                 aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">Add Doctors</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="panel panel-primary">
+
+                                                <div class="panel-body">
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control"
+                                                               id="dev-table-filter"
+                                                               data-action="filter"
+                                                               data-filters="#dev-table"
+                                                               placeholder="Search Items"/>
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <a href="{% url 'patients:add_patients' %}" align="pull-right"
+                                                           class="btn btn-primary"
+                                                           role="button"><span
+                                                                class="glyphicon glyphicon-plus"></span>
+                                                            Add Doctors</a>
+                                                    </div>
+                                                </div>
+                                                <table class="table table-hover" id="dev-table">
+                                                    <thead>
+                                                    {% for patients in patients_list %}
+                                                        <tr>
+                                                            <td>
+                                                                {{ patients.id|capfirst }}
+                                                            </td>
+                                                            <td>
+                                                                {{ patients.name|capfirst }}
+                                                            </td>
+
+                                                            <td>
+                                                                {{ patients.email|capfirst }}
+                                                            </td>
+                                                            <td>
+                                                                {{patients.location|capfirst }}
+                                                            </td>
+                                                            <td>
+                                                                {{ patients.telephone_number }}
+                                                            </td>
+                                                            <td class="text-center">
+                                                            <td class="text-center">
+                                                                <a class='btn btn-info btn-xs'
+                                                                   href="{% url 'patients:patients_update' patient.pk %}"><span
+                                                                        class="glyphicon glyphicon-edit"></span>
+                                                                    Edit
+                                                                </a>
+                                                                <a href="{% url 'patients:delete_patients' patient.pk %}"
+                                                                   class="btn btn-danger btn-xs"><span
+                                                                        class="glyphicon glyphicon-remove"></span>
+                                                                    Delete
+                                                                </a>
+                                                                <a href="{% url 'patients:patients_details' patient.pk %}"
+                                                                   class="btn btn-success btn-xs"><span
+                                                                        class="glyphicon glyphicon-eye-open"></span>
+                                                                    Details
+                                                                </a>
+                                                            </td>
+
+
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Recieve
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Copy
+                                            </button>
+                                            <button type="button" class="btn btn-default">Print</button>
+                                            <button type="button" class="btn btn-default">Attachments</button>
+
+                                            <button type="button" class="btn btn-default">Close</button>
+                                            <button type="button" class="btn btn-default">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#exampleModal" data-whatever="@getbootstrap">More
+                            </button>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">More</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            .........
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Recieve
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Copy
+                                            </button>
+                                            <button type="button" class="btn btn-default">Print</button>
+                                            <button type="button" class="btn btn-default">Attachments</button>
+
+                                            <button type="button" class="btn btn-default">Close</button>
+                                            <button type="button" class="btn btn-default">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target=".bs-example-modal-lg11111" data-whatever="@getbootstrap">Notes/Status
+                            </button>
+
+                            <div class="modal fade bs-example-modal-lg11111" tabindex="-1" role="dialog"
+                                 aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">Notes/Status</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Recieve
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Copy
+                                            </button>
+                                            <button type="button" class="btn btn-default">Print</button>
+                                            <button type="button" class="btn btn-default">Attachments</button>
+
+                                            <button type="button" class="btn btn-default">Close</button>
+                                            <button type="button" class="btn btn-default">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#exampleModal22" data-whatever="@getbootstrap">Custom
+                            </button>
+
+                            <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">Custom </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Recieve
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Copy
+                                            </button>
+                                            <button type="button" class="btn btn-default">Print</button>
+                                            <button type="button" class="btn btn-default">Attachments</button>
+
+                                            <button type="button" class="btn btn-default">Close</button>
+                                            <button type="button" class="btn btn-default">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn" data-toggle="modal"
+                                    data-target="#exampleModal221" data-whatever="@getbootstrap">SocialEconomicStatus
+                            </button>
+
+                            <div class="modal fade" id="exampleModal221" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">SocialEconomicStatus </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Recieve
+                                            </button>
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Copy
+                                            </button>
+                                            <button type="button" class="btn btn-default">Print</button>
+                                            <button type="button" class="btn btn-default">Attachments</button>
+
+                                            <button type="button" class="btn btn-default">Close</button>
+                                            <button type="button" class="btn btn-default">Exit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal22" data-whatever="@getbootstrap">RFQs
+                            </button>
+
+                            <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="exampleModalLabel">RFQs</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

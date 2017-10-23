@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}patients {% endblock %}
+
+{% block content %}
+    <div class="page-header" align="center" xmlns="http://www.w3.org/1999/html">
+        <p class="lead">Available patients</p>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div>
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                    <div class="pull-right">
+                                <a href="{% url 'patients:create_patients' %}" align="pull-right"
+                                   class="btn btn-primary"
+                                   role="button"><span
+                                        class="glyphicon glyphicon-plus"></span>
+                                    Add Patients</a>
+                            </div>
+                        <div class="container" align="center">
+
+                            <!-- Large modal -->
+
+                            <table class="table table-responsive" id="dev-table">
+                                <thead>
+                                <tr>
+
+
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email Address</th>
+                                    <th>Location</th>
+                                    <th>description</th>
+                                    <th>Assigned Doctor</th>
+                                    <th>telephone Number</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for patient in object_list %}
+                                    <tr>
+                                        <td>
+                                            {{ patient.id|capfirst }}
+                                        </td>
+                                         <td>
+                                            {{ patient.name|capfirst }}
+                                        </td>
+                                        <td>
+                                            {{ patient.email|capfirst }}
+                                        </td>
+                                        <td>
+                                            {{patient.location|capfirst }}
+                                        </td>
+                                          <td>
+                                            {{ patient.description|capfirst }}
+                                        </td>
+                                          <td>
+                                            {{ patient.assigned_doctor|capfirst }}
+                                        </td>
+                                        <td>
+                                            {{ patient.telephone_number }}
+                                        </td>
+                                        <td class="text-center">
+                                        <td class="text-center">
+                                            <a class='btn btn-info btn-xs'
+                                               href="{% url 'patients:patients_update' patient.pk %}"><span
+                                                    class="glyphicon glyphicon-edit"></span>
+                                                Edit
+                                            </a>
+                                            <a href="{% url 'patients:delete_patients' patient.pk %}" class="btn btn-danger btn-xs"><span
+                                                    class="glyphicon glyphicon-remove"></span>
+                                                Delete
+                                            </a>
+                                            <a href="{% url 'patients:patients_details' patient.pk %}"
+                                               class="btn btn-success btn-xs"><span
+                                                    class="glyphicon glyphicon-eye-open"></span>
+                                                Details
+                                            </a>
+                                        </td>
+
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
